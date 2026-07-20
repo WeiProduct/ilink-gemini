@@ -1,0 +1,22 @@
+{
+  "name": "ilink-gemini",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "node server.mjs",
+    "build": "vite build",
+    "start": "NODE_ENV=production node server.mjs",
+    "preview": "vite preview"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "dependencies": {
+    "@google/genai": "^2.0.0",
+    "express": "^5.1.0"
+  },
+  "devDependencies": {
+    "vite": "^7.0.0"
+  }
+}

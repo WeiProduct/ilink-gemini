@@ -1,0 +1,7 @@
+{
+  "name": "ilink Gemini",
+  "description": "A privacy-first Gemini companion that turns small life moments into human-approved family updates.",
+  "requestFramePermissions": [
+    "microphone"
+  ]
+}

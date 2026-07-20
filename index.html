@@ -1,0 +1,269 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <meta name="theme-color" content="#f7efe5" />
+    <meta name="description" content="ilink uses Gemini to turn small life moments into private, human-approved family updates." />
+    <link rel="manifest" href="/manifest.webmanifest" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Fraunces:opsz,wght@9..144,500;9..144,600&family=Noto+Serif+SC:wght@500;600&display=swap" rel="stylesheet" />
+    <title>ilink Gemini · Real life, privately connected</title>
+  </head>
+  <body>
+    <svg class="svg-defs" aria-hidden="true">
+      <defs>
+        <symbol id="icon-lock" viewBox="0 0 24 24"><rect x="5" y="10" width="14" height="11" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></symbol>
+        <symbol id="icon-family" viewBox="0 0 24 24"><circle cx="8" cy="8" r="3"/><circle cx="17" cy="9" r="2.5"/><path d="M3 20c.4-4 2-6 5-6s4.7 2 5 6m1-6c3-.3 5 1.5 5.5 5"/></symbol>
+        <symbol id="icon-mic" viewBox="0 0 24 24"><rect x="8" y="3" width="8" height="12" rx="4"/><path d="M5 11a7 7 0 0 0 14 0M12 18v3m-3 0h6"/></symbol>
+        <symbol id="icon-me" viewBox="0 0 24 24"><circle cx="12" cy="8" r="3.5"/><path d="M5 20c.5-4.2 2.8-6.2 7-6.2s6.5 2 7 6.2"/></symbol>
+        <symbol id="icon-spark" viewBox="0 0 24 24"><path d="m12 2 1.7 6.3L20 10l-6.3 1.7L12 18l-1.7-6.3L4 10l6.3-1.7zM19 16l.7 2.3L22 19l-2.3.7L19 22l-.7-2.3L16 19l2.3-.7z"/></symbol>
+        <symbol id="icon-arrow" viewBox="0 0 24 24"><path d="M5 12h14m-5-5 5 5-5 5"/></symbol>
+        <symbol id="icon-check" viewBox="0 0 24 24"><path d="m5 12 4 4L19 6"/></symbol>
+        <symbol id="icon-glasses" viewBox="0 0 24 24"><path d="M2 11h3m14 0h3M5 10h5l1 5H6a3 3 0 0 1-1-5Zm14 0h-5l-1 5h5a3 3 0 0 0 1-5Zm-8 1h2"/></symbol>
+        <symbol id="icon-send" viewBox="0 0 24 24"><path d="m4 5 16 7-16 7 3-7zM7 12h13"/></symbol>
+      </defs>
+    </svg>
+
+    <header class="site-header">
+      <a class="brand" href="#top" aria-label="ilink home">
+        <span class="brand-mark">i</span>
+        <span>ilink</span>
+      </a>
+      <nav class="header-actions" aria-label="Site controls">
+        <span class="gemini-pill"><svg><use href="#icon-spark" /></svg><span data-i18n="geminiBuilt">Built with Gemini</span></span>
+        <div class="language-switch" role="group" aria-label="Language">
+          <button type="button" data-language="en" class="active" aria-pressed="true">EN</button>
+          <button type="button" data-language="zh" aria-pressed="false">中文</button>
+        </div>
+      </nav>
+    </header>
+
+    <main id="top">
+      <section class="hero section-shell">
+        <div class="hero-copy">
+          <p class="eyebrow" data-i18n="eyebrow">Life between us</p>
+          <h1 data-i18n="heroTitle">Let each other know how life is unfolding.</h1>
+          <p class="hero-lede" data-i18n="heroLede">Capture a small moment. Let Gemini organize it. Review every word—then share only what feels right.</p>
+          <div class="hero-actions">
+            <button class="primary-action" type="button" data-open-tab="record">
+              <span data-i18n="recordMoment">Record a moment</span>
+              <svg><use href="#icon-arrow" /></svg>
+            </button>
+            <a class="text-link" href="#glasses"><span data-i18n="seeGlasses">See ilink Glasses</span><span>↘</span></a>
+          </div>
+          <div class="trust-row" aria-label="Privacy principles">
+            <span><svg><use href="#icon-lock" /></svg><span data-i18n="privateDefault">Private by default</span></span>
+            <span><svg><use href="#icon-check" /></svg><span data-i18n="humanApproved">Human approved</span></span>
+            <span><svg><use href="#icon-spark" /></svg><span data-i18n="geminiOrganized">Gemini organized</span></span>
+          </div>
+        </div>
+
+        <div class="phone-wrap" aria-label="Interactive ilink application demo">
+          <div class="phone-shadow"></div>
+          <section class="phone">
+            <div class="phone-status"><span>9:41</span><span>● ◒ ▰</span></div>
+            <header class="app-header">
+              <div><span class="app-wordmark">ilink</span><span class="privacy-state"><i></i><span data-i18n="onlyYou">Private · only you</span></span></div>
+              <button class="mini-avatar" type="button" data-open-assistant aria-label="Open Xiaolian">小</button>
+            </header>
+
+            <div class="app-view active" data-view="record">
+              <div class="view-heading">
+                <p data-i18n="recordKicker">Capture first</p>
+                <h2 data-i18n="recordTitle">Say it once.<br />Stay close.</h2>
+                <span data-i18n="recordSub">Gemini drafts. You decide what leaves this screen.</span>
+              </div>
+              <div class="examples" aria-label="Example prompts">
+                <button type="button" data-example="I started a new project today and finally solved the first difficult problem."><span>01</span><span data-i18n="exampleOne">I started a new project today</span></button>
+                <button type="button" data-example="I tried Mom's tomato egg recipe for dinner. It tasted close to home, and I want to make it for her next visit."><span>02</span><span data-i18n="exampleTwo">Turn dinner into an update for Mom</span></button>
+                <button type="button" data-example="I called Dad after work and we made a plan to hike together next Sunday morning."><span>03</span><span data-i18n="exampleThree">Remember a plan with Dad</span></button>
+              </div>
+              <form class="capture-form" id="capture-form">
+                <label for="moment-input" data-i18n="momentLabel">What happened?</label>
+                <textarea id="moment-input" maxlength="6000" placeholder="I had a small win at work today..." data-i18n-placeholder="momentPlaceholder"></textarea>
+                <div class="capture-controls">
+                  <button class="mic-button" id="mic-button" type="button" aria-pressed="false">
+                    <span class="mic-rings"></span>
+                    <svg><use href="#icon-mic" /></svg>
+                    <span class="mic-label" data-i18n="tapSpeak">Tap to speak</span>
+                  </button>
+                  <button class="organize-button" type="submit">
+                    <svg><use href="#icon-spark" /></svg>
+                    <span data-i18n="organize">Organize with Gemini</span>
+                  </button>
+                </div>
+                <p class="capture-note" id="capture-note" data-i18n="captureNote">Speech stays in this draft until you choose to process it.</p>
+              </form>
+            </div>
+
+            <div class="app-view" data-view="family">
+              <div class="view-heading compact">
+                <p data-i18n="familyKicker">Family circle</p>
+                <h2 data-i18n="familyTitle">Closer, without the check-in.</h2>
+                <span data-i18n="familySub">Only your approved moments can become family cards.</span>
+              </div>
+              <div class="family-people">
+                <button type="button" class="person-card active" data-recipient="Mom">
+                  <span class="person-photo mom">M</span><span><b data-i18n="mom">Mom</b><small data-i18n="lastUpdate">last update yesterday</small></span><i></i>
+                </button>
+                <button type="button" class="person-card" data-recipient="Dad">
+                  <span class="person-photo dad">D</span><span><b data-i18n="dad">Dad</b><small data-i18n="lastUpdateWeek">last update this week</small></span><i></i>
+                </button>
+              </div>
+              <section class="share-composer">
+                <div class="card-label"><svg><use href="#icon-lock" /></svg><span data-i18n="privateUpdate">Private family update · demo</span></div>
+                <label for="approved-select" data-i18n="chooseMoment">Choose an approved moment</label>
+                <select id="approved-select"></select>
+                <label for="share-caption" data-i18n="captionLabel">Caption</label>
+                <textarea id="share-caption" maxlength="1200"></textarea>
+                <button id="create-card" type="button"><span data-i18n="createCard">Create private card</span><svg><use href="#icon-arrow" /></svg></button>
+                <p data-i18n="shareDemoNote">Demo only. No message is sent to another account.</p>
+              </section>
+              <div class="family-feed" id="family-feed"></div>
+            </div>
+
+            <div class="app-view" data-view="me">
+              <div class="view-heading compact">
+                <p data-i18n="meKicker">My private space</p>
+                <h2 data-i18n="meTitle">My Day</h2>
+                <span data-i18n="meSub">A quiet record of what mattered—not a performance.</span>
+              </div>
+              <div class="day-summary">
+                <div class="day-date"><span data-i18n="today">Today</span><b id="today-date"></b></div>
+                <div class="day-count"><b id="moment-count">0</b><span data-i18n="moments">moments</span></div>
+              </div>
+              <div class="timeline" id="timeline"></div>
+            </div>
+
+            <nav class="app-tabs" aria-label="ilink application">
+              <button type="button" data-tab="family"><svg><use href="#icon-family" /></svg><span data-i18n="familyTab">Family</span></button>
+              <button type="button" data-tab="record" class="active"><span class="record-tab-icon"><svg><use href="#icon-mic" /></svg></span><span data-i18n="recordTab">Record</span></button>
+              <button type="button" data-tab="me"><svg><use href="#icon-me" /></svg><span data-i18n="meTab">Me</span></button>
+            </nav>
+          </section>
+        </div>
+      </section>
+
+      <section class="loop section-shell" aria-labelledby="loop-title">
+        <div class="section-intro">
+          <p class="eyebrow" data-i18n="loopKicker">The relationship loop</p>
+          <h2 id="loop-title" data-i18n="loopTitle">AI organizes.<br />People choose.</h2>
+          <p data-i18n="loopCopy">ilink removes the pressure of writing a perfect update while preserving the part that matters most: consent.</p>
+        </div>
+        <div class="loop-grid">
+          <article><span>01</span><div class="loop-icon voice"><svg><use href="#icon-mic" /></svg></div><h3 data-i18n="stepCapture">Capture naturally</h3><p data-i18n="stepCaptureCopy">Speak or type a moment before it disappears.</p></article>
+          <article><span>02</span><div class="loop-icon sparkle"><svg><use href="#icon-spark" /></svg></div><h3 data-i18n="stepOrganize">Gemini organizes</h3><p data-i18n="stepOrganizeCopy">A factual memory draft, title, tags, and caption.</p></article>
+          <article><span>03</span><div class="loop-icon approve"><svg><use href="#icon-check" /></svg></div><h3 data-i18n="stepApprove">Review first</h3><p data-i18n="stepApproveCopy">Edit, regenerate, approve, or discard every word.</p></article>
+          <article><span>04</span><div class="loop-icon family"><svg><use href="#icon-family" /></svg></div><h3 data-i18n="stepShare">Share intentionally</h3><p data-i18n="stepShareCopy">Only approved moments can become family cards.</p></article>
+        </div>
+      </section>
+
+      <section class="glasses" id="glasses">
+        <div class="section-shell glasses-grid">
+          <div class="glasses-visual">
+            <div class="sun-orb"></div>
+            <img src="/ilink-smart-glasses.png" alt="ilink smart glasses concept with one-frame capture button" />
+            <span class="camera-label"><i></i><span data-i18n="oneFrameCamera">One-frame camera · visible privacy light</span></span>
+            <div class="frame-preview" id="frame-preview">
+              <span class="frame-flash"></span>
+              <small data-i18n="privateInbox">Private inbox</small>
+              <b data-i18n="oneFrameSaved">One frame saved</b>
+              <span data-i18n="notShared">Not shared</span>
+            </div>
+          </div>
+          <div class="glasses-copy">
+            <p class="eyebrow" data-i18n="glassesKicker">ilink Glasses · ambient capture</p>
+            <h2 data-i18n="glassesTitle">One frame becomes something worth knowing.</h2>
+            <p data-i18n="glassesCopy">No continuous video. At a selected moment, the wearer captures one frame. Gemini proposes a memory later; the human decides what family can see.</p>
+            <div class="glasses-steps" id="glasses-steps">
+              <button class="active" type="button" data-glasses-step="0"><span>01</span><span><b data-i18n="g1">Intentional trigger</b><small data-i18n="g1copy">The wearer presses capture.</small></span></button>
+              <button type="button" data-glasses-step="1"><span>02</span><span><b data-i18n="g2">Take one photo</b><small data-i18n="g2copy">A visible light marks the frame.</small></span></button>
+              <button type="button" data-glasses-step="2"><span>03</span><span><b data-i18n="g3">Private sync</b><small data-i18n="g3copy">The original enters a private inbox.</small></span></button>
+              <button type="button" data-glasses-step="3"><span>04</span><span><b data-i18n="g4">Gemini organizes My Day</b><small data-i18n="g4copy">A suggested memory, never a post.</small></span></button>
+              <button type="button" data-glasses-step="4"><span>05</span><span><b data-i18n="g5">Review, then share</b><small data-i18n="g5copy">Family only sees the approved card.</small></span></button>
+            </div>
+            <button class="capture-frame-button" id="capture-frame" type="button"><svg><use href="#icon-glasses" /></svg><span data-i18n="tryCapture">Try one-frame capture</span></button>
+          </div>
+        </div>
+      </section>
+
+      <section class="principles section-shell">
+        <div class="principles-card">
+          <div><p class="eyebrow" data-i18n="principlesKicker">Privacy is the product</p><h2 data-i18n="principlesTitle">Memory without surveillance.</h2></div>
+          <ul>
+            <li><span>01</span><b data-i18n="p1">No 24/7 recording</b></li>
+            <li><span>02</span><b data-i18n="p2">Originals stay private</b></li>
+            <li><span>03</span><b data-i18n="p3">Gemini never auto-publishes</b></li>
+            <li><span>04</span><b data-i18n="p4">The wearer approves every share</b></li>
+          </ul>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <div class="brand"><span class="brand-mark">i</span><span>ilink</span></div>
+      <p data-i18n="footerCopy">Real life, privately connected. A Gemini-powered hackathon prototype by WeiProduct.</p>
+      <span>Google Gemini · AI Studio · Cloud Run</span>
+    </footer>
+
+    <div class="modal-backdrop" id="review-modal" hidden>
+      <section class="review-modal" role="dialog" aria-modal="true" aria-labelledby="review-title">
+        <header>
+          <div><p class="eyebrow" data-i18n="reviewKicker">Gemini draft · private</p><h2 id="review-title" data-i18n="reviewTitle">Review before anything moves.</h2></div>
+          <button class="modal-close" type="button" aria-label="Close review">×</button>
+        </header>
+        <div class="review-progress" id="review-progress" hidden><i></i><span data-i18n="geminiThinking">Gemini is organizing this moment...</span></div>
+        <div class="review-error" id="review-error" hidden></div>
+        <div class="review-grid" id="review-grid">
+          <section class="original-panel">
+            <span class="panel-label"><svg><use href="#icon-lock" /></svg><span data-i18n="originalInput">Original input</span></span>
+            <p id="review-original"></p>
+            <small data-i18n="originalNote">Only the current text was sent to Gemini.</small>
+          </section>
+          <section class="draft-panel">
+            <span class="panel-label"><svg><use href="#icon-spark" /></svg><span data-i18n="geminiSuggestion">Gemini suggestion</span></span>
+            <label><span data-i18n="titleLabel">Title</span><input id="draft-title" maxlength="100" /></label>
+            <label><span data-i18n="summaryLabel">Summary</span><textarea id="draft-summary" maxlength="1200"></textarea></label>
+            <label><span data-i18n="tagsLabel">Tags</span><input id="draft-tags" maxlength="180" /></label>
+            <label><span data-i18n="captionLabel">Family caption</span><textarea id="draft-caption" maxlength="1200"></textarea></label>
+            <span class="model-note" id="model-note"></span>
+          </section>
+        </div>
+        <div class="review-actions">
+          <button class="discard-button" id="discard-draft" type="button" data-i18n="discard">Discard</button>
+          <button class="regenerate-button" id="regenerate-draft" type="button"><svg><use href="#icon-spark" /></svg><span data-i18n="regenerate">Regenerate</span></button>
+          <button class="approve-button" id="approve-draft" type="button"><svg><use href="#icon-check" /></svg><span data-i18n="approvePrivate">Approve to My Day</span></button>
+        </div>
+      </section>
+    </div>
+
+    <aside class="assistant" id="assistant" aria-label="Xiaolian Gemini companion">
+      <section class="assistant-panel" role="dialog" aria-modal="false" aria-labelledby="assistant-title" aria-hidden="true">
+        <header>
+          <div class="assistant-avatar">小</div>
+          <div><b id="assistant-title">Xiaolian · 小连</b><span><i></i><span data-i18n="geminiGuide">Gemini product guide</span></span></div>
+          <button type="button" data-close-assistant aria-label="Close Xiaolian">×</button>
+        </header>
+        <div class="assistant-messages" id="assistant-messages" role="log" aria-live="polite"></div>
+        <div class="assistant-suggestions">
+          <button type="button" data-question="Who can see my moments?" data-i18n="qPrivacy">Who can see my moments?</button>
+          <button type="button" data-question="How does Gemini help without auto-sharing?" data-i18n="qGemini">How does Gemini help?</button>
+          <button type="button" data-question="Are the glasses recording all the time?" data-i18n="qGlasses">Do the glasses record all day?</button>
+        </div>
+        <form class="assistant-form" id="assistant-form">
+          <input id="assistant-input" maxlength="1000" placeholder="Ask about ilink..." data-i18n-placeholder="assistantPlaceholder" />
+          <button type="submit" aria-label="Send"><svg><use href="#icon-send" /></svg></button>
+        </form>
+        <p class="assistant-privacy" data-i18n="assistantPrivacy">Xiaolian cannot inspect your private records.</p>
+      </section>
+      <button class="assistant-launch" type="button" data-open-assistant aria-expanded="false">
+        <span>小</span><span><b data-i18n="askXiaolian">Ask Xiaolian</b><small data-i18n="geminiCompanion">Gemini companion</small></span><i></i>
+      </button>
+    </aside>
+
+    <div class="toast" id="toast" role="status" aria-live="polite"></div>
+    <script type="module" src="/src/main.js"></script>
+  </body>
+</html>
