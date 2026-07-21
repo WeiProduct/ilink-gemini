@@ -1,5 +1,5 @@
-const CACHE = 'ilink-gemini-v1';
-const CORE = ['/', '/manifest.webmanifest', '/ilink-xiaolian.png', '/ilink-smart-glasses.png'];
+const CACHE = 'ilink-gemini-v2';
+const CORE = ['/', '/manifest.webmanifest', '/ilink-xiaolian.png', '/ilink-smart-glasses-2026.png'];
 
 self.addEventListener('install', (event) => {
   event.waitUntil(caches.open(CACHE).then((cache) => cache.addAll(CORE)).then(() => self.skipWaiting()));
