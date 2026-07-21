@@ -1,4 +1,4 @@
-const CACHE = 'ilink-gemini-v2';
+const CACHE = 'ilink-gemini-v3';
 const CORE = ['/', '/manifest.webmanifest', '/ilink-xiaolian.png', '/ilink-smart-glasses-2026.png'];
 
 self.addEventListener('install', (event) => {
@@ -15,13 +15,23 @@ self.addEventListener('activate', (event) => {
 
 self.addEventListener('fetch', (event) => {
   if (event.request.method !== 'GET' || new URL(event.request.url).pathname.startsWith('/api/')) return;
-  event.respondWith(
-    fetch(event.request)
-      .then((response) => {
-        const copy = response.clone();
-        caches.open(CACHE).then((cache) => cache.put(event.request, copy));
-        return response;
-      })
-      .catch(() => caches.match(event.request).then((cached) => cached || caches.match('/'))),
-  );
+  event.respondWith((async () => {
+    try {
+      const response = await fetch(event.request);
+      if (response.ok && new URL(event.request.url).origin === self.location.origin) {
+        try {
+          const cache = await caches.open(CACHE);
+          await cache.put(event.request, response.clone());
+        } catch {
+          // Cache storage is best-effort; never discard a successful network response.
+        }
+      }
+      return response;
+    } catch {
+      const cached = await caches.match(event.request);
+      if (cached) return cached;
+      if (event.request.mode === 'navigate') return caches.match('/');
+      return Response.error();
+    }
+  })());
 });
