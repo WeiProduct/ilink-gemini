@@ -66,19 +66,19 @@
             <div class="phone-status"><span>9:41</span><span>● ◒ ▰</span></div>
             <header class="app-header">
               <div><span class="app-wordmark">ilink</span><span class="privacy-state"><i></i><span data-i18n="onlyYou">Private · only you</span></span></div>
-              <button class="mini-avatar" type="button" data-open-assistant aria-label="Open Xiaolian">小</button>
+              <button class="mini-avatar" type="button" data-open-assistant aria-controls="assistant-panel" aria-expanded="false" aria-label="Open Xiaolian">小</button>
             </header>
 
-            <div class="app-view active" data-view="record">
+            <div class="app-view active" id="panel-record" data-view="record" role="tabpanel" aria-labelledby="tab-record" aria-hidden="false">
               <div class="view-heading">
                 <p data-i18n="recordKicker">Capture first</p>
                 <h2 data-i18n="recordTitle">Say it once.<br />Stay close.</h2>
                 <span data-i18n="recordSub">Gemini drafts. You decide what leaves this screen.</span>
               </div>
               <div class="examples" aria-label="Example prompts">
-                <button type="button" data-example="I started a new project today and finally solved the first difficult problem."><span>01</span><span data-i18n="exampleOne">I started a new project today</span></button>
-                <button type="button" data-example="I tried Mom's tomato egg recipe for dinner. It tasted close to home, and I want to make it for her next visit."><span>02</span><span data-i18n="exampleTwo">Turn dinner into an update for Mom</span></button>
-                <button type="button" data-example="I called Dad after work and we made a plan to hike together next Sunday morning."><span>03</span><span data-i18n="exampleThree">Remember a plan with Dad</span></button>
+                <button type="button" data-example-key="exampleOneInput"><span>01</span><span data-i18n="exampleOne">I started a new project today</span></button>
+                <button type="button" data-example-key="exampleTwoInput"><span>02</span><span data-i18n="exampleTwo">Turn dinner into an update for Mom</span></button>
+                <button type="button" data-example-key="exampleThreeInput"><span>03</span><span data-i18n="exampleThree">Remember a plan with Dad</span></button>
               </div>
               <form class="capture-form" id="capture-form">
                 <label for="moment-input" data-i18n="momentLabel">What happened?</label>
@@ -88,27 +88,40 @@
                     <span class="mic-rings"></span>
                     <svg><use href="#icon-mic" /></svg>
                     <span class="mic-label" data-i18n="tapSpeak">Tap to speak</span>
+                    <span class="recording-time" id="recording-time" hidden>00:00</span>
                   </button>
-                  <button class="organize-button" type="submit">
+                  <button class="organize-button" id="organize-button" type="submit">
                     <svg><use href="#icon-spark" /></svg>
                     <span data-i18n="organize">Organize with Gemini</span>
                   </button>
                 </div>
-                <p class="capture-note" id="capture-note" data-i18n="captureNote">Speech stays in this draft until you choose to process it.</p>
+                <section class="recording-preview" id="recording-preview" aria-live="polite" hidden>
+                  <div class="recording-preview-heading">
+                    <span><i></i><b data-i18n="recordingReady">Recording ready</b></span>
+                    <button id="remove-recording" type="button" data-i18n-aria-label="removeRecording" aria-label="Delete recording">×</button>
+                  </div>
+                  <audio id="recording-audio" controls preload="metadata"></audio>
+                  <button class="transcribe-button" id="transcribe-recording" type="button">
+                    <svg><use href="#icon-spark" /></svg>
+                    <span data-i18n="transcribeRecording">Transcribe with Gemini</span>
+                  </button>
+                  <p class="recording-status" id="recording-status" role="status"></p>
+                </section>
+                <p class="capture-note" id="capture-note" data-i18n="captureNote">Your recording stays on this device until you explicitly ask Gemini to transcribe it.</p>
               </form>
             </div>
 
-            <div class="app-view" data-view="family">
+            <div class="app-view" id="panel-family" data-view="family" role="tabpanel" aria-labelledby="tab-family" aria-hidden="true">
               <div class="view-heading compact">
                 <p data-i18n="familyKicker">Family circle</p>
                 <h2 data-i18n="familyTitle">Closer, without the check-in.</h2>
                 <span data-i18n="familySub">Only your approved moments can become family cards.</span>
               </div>
               <div class="family-people">
-                <button type="button" class="person-card active" data-recipient="Mom">
+                <button type="button" class="person-card active" data-recipient="mom" aria-pressed="true">
                   <span class="person-photo mom">M</span><span><b data-i18n="mom">Mom</b><small data-i18n="lastUpdate">last update yesterday</small></span><i></i>
                 </button>
-                <button type="button" class="person-card" data-recipient="Dad">
+                <button type="button" class="person-card" data-recipient="dad" aria-pressed="false">
                   <span class="person-photo dad">D</span><span><b data-i18n="dad">Dad</b><small data-i18n="lastUpdateWeek">last update this week</small></span><i></i>
                 </button>
               </div>
@@ -124,7 +137,7 @@
               <div class="family-feed" id="family-feed"></div>
             </div>
 
-            <div class="app-view" data-view="me">
+            <div class="app-view" id="panel-me" data-view="me" role="tabpanel" aria-labelledby="tab-me" aria-hidden="true">
               <div class="view-heading compact">
                 <p data-i18n="meKicker">My private space</p>
                 <h2 data-i18n="meTitle">My Day</h2>
@@ -137,10 +150,10 @@
               <div class="timeline" id="timeline"></div>
             </div>
 
-            <nav class="app-tabs" aria-label="ilink application">
-              <button type="button" data-tab="family"><svg><use href="#icon-family" /></svg><span data-i18n="familyTab">Family</span></button>
-              <button type="button" data-tab="record" class="active"><span class="record-tab-icon"><svg><use href="#icon-mic" /></svg></span><span data-i18n="recordTab">Record</span></button>
-              <button type="button" data-tab="me"><svg><use href="#icon-me" /></svg><span data-i18n="meTab">Me</span></button>
+            <nav class="app-tabs" role="tablist" aria-label="ilink application">
+              <button type="button" id="tab-family" role="tab" aria-controls="panel-family" aria-selected="false" tabindex="-1" data-tab="family"><svg><use href="#icon-family" /></svg><span data-i18n="familyTab">Family</span></button>
+              <button type="button" id="tab-record" role="tab" aria-controls="panel-record" aria-selected="true" tabindex="0" data-tab="record" class="active"><span class="record-tab-icon"><svg><use href="#icon-mic" /></svg></span><span data-i18n="recordTab">Record</span></button>
+              <button type="button" id="tab-me" role="tab" aria-controls="panel-me" aria-selected="false" tabindex="-1" data-tab="me"><svg><use href="#icon-me" /></svg><span data-i18n="meTab">Me</span></button>
             </nav>
           </section>
         </div>
@@ -178,11 +191,11 @@
             <h2 data-i18n="glassesTitle">One frame becomes something worth knowing.</h2>
             <p data-i18n="glassesCopy">No continuous video. At a selected moment, the wearer captures one frame. Gemini proposes a memory later; the human decides what family can see.</p>
             <div class="glasses-steps" id="glasses-steps">
-              <button class="active" type="button" data-glasses-step="0"><span>01</span><span><b data-i18n="g1">Intentional trigger</b><small data-i18n="g1copy">The wearer presses capture.</small></span></button>
-              <button type="button" data-glasses-step="1"><span>02</span><span><b data-i18n="g2">Take one photo</b><small data-i18n="g2copy">A visible light marks the frame.</small></span></button>
-              <button type="button" data-glasses-step="2"><span>03</span><span><b data-i18n="g3">Private sync</b><small data-i18n="g3copy">The original enters a private inbox.</small></span></button>
-              <button type="button" data-glasses-step="3"><span>04</span><span><b data-i18n="g4">Gemini organizes My Day</b><small data-i18n="g4copy">A suggested memory, never a post.</small></span></button>
-              <button type="button" data-glasses-step="4"><span>05</span><span><b data-i18n="g5">Review, then share</b><small data-i18n="g5copy">Family only sees the approved card.</small></span></button>
+              <button class="active" type="button" data-glasses-step="0" aria-pressed="true"><span>01</span><span><b data-i18n="g1">Intentional trigger</b><small data-i18n="g1copy">The wearer presses capture.</small></span></button>
+              <button type="button" data-glasses-step="1" aria-pressed="false"><span>02</span><span><b data-i18n="g2">Take one photo</b><small data-i18n="g2copy">A visible light marks the frame.</small></span></button>
+              <button type="button" data-glasses-step="2" aria-pressed="false"><span>03</span><span><b data-i18n="g3">Private sync</b><small data-i18n="g3copy">The original enters a private inbox.</small></span></button>
+              <button type="button" data-glasses-step="3" aria-pressed="false"><span>04</span><span><b data-i18n="g4">Gemini organizes My Day</b><small data-i18n="g4copy">A suggested memory, never a post.</small></span></button>
+              <button type="button" data-glasses-step="4" aria-pressed="false"><span>05</span><span><b data-i18n="g5">Review, then share</b><small data-i18n="g5copy">Family only sees the approved card.</small></span></button>
             </div>
             <button class="capture-frame-button" id="capture-frame" type="button"><svg><use href="#icon-glasses" /></svg><span data-i18n="tryCapture">Try one-frame capture</span></button>
           </div>
@@ -214,9 +227,9 @@
           <div><p class="eyebrow" data-i18n="reviewKicker">Gemini draft · private</p><h2 id="review-title" data-i18n="reviewTitle">Review before anything moves.</h2></div>
           <button class="modal-close" type="button" aria-label="Close review">×</button>
         </header>
-        <div class="review-progress" id="review-progress" hidden><i></i><span data-i18n="geminiThinking">Gemini is organizing this moment...</span></div>
-        <div class="review-error" id="review-error" hidden></div>
-        <div class="review-grid" id="review-grid">
+        <div class="review-progress" id="review-progress" role="status" aria-live="polite" hidden><i></i><span data-i18n="geminiThinking">Gemini is organizing this moment...</span></div>
+        <div class="review-error" id="review-error" role="alert" hidden></div>
+        <div class="review-grid" id="review-grid" aria-busy="false">
           <section class="original-panel">
             <span class="panel-label"><svg><use href="#icon-lock" /></svg><span data-i18n="originalInput">Original input</span></span>
             <p id="review-original"></p>
@@ -240,7 +253,7 @@
     </div>
 
     <aside class="assistant" id="assistant" aria-label="Xiaolian Gemini companion">
-      <section class="assistant-panel" role="dialog" aria-modal="false" aria-labelledby="assistant-title" aria-hidden="true">
+      <section class="assistant-panel" id="assistant-panel" role="dialog" aria-modal="false" aria-labelledby="assistant-title" aria-hidden="true">
         <header>
           <div class="assistant-avatar">小</div>
           <div><b id="assistant-title">Xiaolian · 小连</b><span><i></i><span data-i18n="geminiGuide">Gemini product guide</span></span></div>
@@ -248,17 +261,17 @@
         </header>
         <div class="assistant-messages" id="assistant-messages" role="log" aria-live="polite"></div>
         <div class="assistant-suggestions">
-          <button type="button" data-question="Who can see my moments?" data-i18n="qPrivacy">Who can see my moments?</button>
-          <button type="button" data-question="How does Gemini help without auto-sharing?" data-i18n="qGemini">How does Gemini help?</button>
-          <button type="button" data-question="Are the glasses recording all the time?" data-i18n="qGlasses">Do the glasses record all day?</button>
+          <button type="button" data-question-key="qPrivacyPrompt" data-i18n="qPrivacy">Who can see my moments?</button>
+          <button type="button" data-question-key="qGeminiPrompt" data-i18n="qGemini">How does Gemini help?</button>
+          <button type="button" data-question-key="qGlassesPrompt" data-i18n="qGlasses">Do the glasses record all day?</button>
         </div>
         <form class="assistant-form" id="assistant-form">
-          <input id="assistant-input" maxlength="1000" placeholder="Ask about ilink..." data-i18n-placeholder="assistantPlaceholder" />
-          <button type="submit" aria-label="Send"><svg><use href="#icon-send" /></svg></button>
+          <input id="assistant-input" maxlength="1000" placeholder="Ask about ilink..." data-i18n-placeholder="assistantPlaceholder" data-i18n-aria-label="assistantPlaceholder" aria-label="Ask about ilink" />
+          <button id="assistant-send" type="submit" aria-label="Send"><svg><use href="#icon-send" /></svg></button>
         </form>
         <p class="assistant-privacy" data-i18n="assistantPrivacy">Xiaolian cannot inspect your private records.</p>
       </section>
-      <button class="assistant-launch" type="button" data-open-assistant aria-expanded="false">
+      <button class="assistant-launch" type="button" data-open-assistant aria-controls="assistant-panel" aria-expanded="false">
         <span>小</span><span><b data-i18n="askXiaolian">Ask Xiaolian</b><small data-i18n="geminiCompanion">Gemini companion</small></span><i></i>
       </button>
     </aside>

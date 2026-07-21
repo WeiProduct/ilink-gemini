@@ -5,14 +5,16 @@ ilink is a privacy-first family connection app built with Google Gemini. It turn
 ## Hackathon demo
 
 - **Family** — choose an approved moment and create a simulated private update for Mom or Dad.
-- **Record** — capture a moment with speech recognition when available, or use the reliable text fallback.
+- **Record** — make a real, locally playable microphone recording, explicitly transcribe it with Gemini, or use the reliable text path.
 - **Me** — review My Day, edit Gemini drafts, and keep clear private/approved/shared states.
 - **Xiaolian** — a Gemini product companion that cannot inspect private records unless the current draft is explicitly provided.
 - **ilink Glasses** — an interactive product concept based on intentional one-frame capture, never continuous recording.
 
 ## Gemini architecture
 
-The browser never receives the API key. Both `/api/summarize` and `/api/assistant` call the stable `gemini-3.5-flash` model from the Node.js server using the Google GenAI SDK. Google AI Studio injects `GEMINI_API_KEY` as a server-side secret during preview and Cloud Run deployment.
+The browser never receives the API key. `/api/transcribe`, `/api/summarize`, and `/api/assistant` call the stable `gemini-3.5-flash` model from the Node.js server using the Google GenAI SDK. Every interaction sets `store: false`. Google AI Studio injects `GEMINI_API_KEY` as a server-side secret during preview and Cloud Run deployment.
+
+The recorder uses `getUserMedia` and `MediaRecorder` only after a user click. The original recording stays in the browser for playback. Before explicit transcription, the browser decodes it and produces a 16 kHz mono PCM WAV; the server accepts only that bounded WAV body and never writes audio to disk.
 
 ## Local development
 
